@@ -1,0 +1,222 @@
+.lui-button,
+.lui-icon-button,
+.lui-menu-trigger,
+.lui-dropdown-menu__item,
+.lui-select-options__item,
+.lui-tabs__tab,
+.lui-switch,
+.lui-theme-switch {
+  border: 0;
+  cursor: pointer;
+}
+
+.lui-button:focus-visible,
+.lui-icon-button:focus-visible,
+.lui-menu-trigger:focus-visible,
+.lui-dropdown-menu__item:focus-visible,
+.lui-select-options__item:focus-visible,
+.lui-tabs__tab:focus-visible,
+.lui-switch:focus-visible,
+.lui-theme-switch:focus-visible,
+.lui-slider:focus-visible {
+  outline: var(--lui-focus-ring-width) solid var(--lui-focus);
+  outline-offset: var(--lui-focus-ring-offset);
+}
+
+[data-lui-restored-focus="true"]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.lui-button:disabled,
+.lui-icon-button:disabled,
+.lui-menu-trigger:disabled,
+.lui-dropdown-menu__item:disabled,
+.lui-select-options__item:disabled,
+.lui-tabs__tab:disabled,
+.lui-switch:disabled,
+.lui-theme-switch:disabled,
+.lui-text-field:disabled,
+.lui-textarea:disabled,
+.lui-slider:disabled {
+  cursor: not-allowed;
+  opacity: var(--lui-disabled-opacity);
+}
+
+.lui-pressable[aria-busy="true"] {
+  opacity: 1;
+}
+
+.lui-pressable:disabled {
+  cursor: not-allowed;
+  opacity: var(--lui-disabled-opacity);
+}
+
+.lui-pressable:focus-visible {
+  outline: var(--lui-focus-ring-width) solid var(--lui-focus);
+  outline-offset: var(--lui-focus-ring-offset);
+}
+
+:where(button, [role="button"], .lui-pressable) {
+  transition:
+    background-color var(--lui-duration-fast) ease,
+    border-color var(--lui-duration-fast) ease,
+    color var(--lui-duration-fast) ease,
+    opacity var(--lui-duration-fast) ease,
+    box-shadow var(--lui-duration-fast) ease,
+    transform var(--lui-duration-fast) ease;
+}
+
+button.lui-theme-switch {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(html:not([data-loom-motion-preview])) :where(button, [role="button"], .lui-pressable) {
+    transition: none;
+  }
+}
+
+.lui-menu-trigger svg,
+.lui-dropdown-menu__item svg,
+.lui-select-options__item svg {
+  width: var(--lui-icon-size-md);
+  height: var(--lui-icon-size-md);
+  flex: 0 0 auto;
+}
+
+.lui-tooltip {
+  z-index: var(--lui-layer-tooltip);
+  pointer-events: none;
+  max-width: min(280px, calc(100vw - 24px));
+  border: 1px solid var(--lui-border);
+  border-radius: var(--lui-radius-control);
+  padding: 6px 9px;
+  background: var(--lui-bg-sunken);
+  color: var(--lui-text-primary);
+  font: 500 var(--lui-font-size-xs) / 18px var(--lui-font);
+  box-shadow: var(--lui-shadow-menu);
+  overflow-wrap: anywhere;
+}
+.lui-tooltip__arrow {
+  overflow: visible;
+}
+.lui-tooltip__arrow-fill {
+  fill: var(--lui-bg-sunken);
+}
+.lui-tooltip__arrow-outline {
+  fill: none;
+  stroke: var(--lui-border);
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.lui-dialog-overlay {
+  position: fixed;
+  z-index: var(--lui-layer-dialog-overlay);
+  inset: 0;
+  background: var(--lui-dialog-overlay-bg);
+  -webkit-backdrop-filter: blur(var(--lui-dialog-overlay-blur)) saturate(0.94);
+  backdrop-filter: blur(var(--lui-dialog-overlay-blur)) saturate(0.94);
+}
+.lui-dialog-overlay--blurred {
+  background: var(--lui-dialog-overlay-bg-strong);
+  -webkit-backdrop-filter: blur(var(--lui-dialog-overlay-blur-strong)) saturate(0.9);
+  backdrop-filter: blur(var(--lui-dialog-overlay-blur-strong)) saturate(0.9);
+}
+.lui-dialog-overlay--opaque {
+  background: var(--lui-nav-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.lui-dialog-overlay--nested {
+  z-index: var(--lui-layer-dialog-overlay-nested);
+}
+.lui-dialog-overlay[data-state="open"] {
+  animation: lui-overlay-in 140ms ease-out;
+}
+.lui-dialog-overlay[data-state="closed"] {
+  animation: lui-overlay-out 110ms ease-in;
+}
+.lui-dialog-overlay[data-state="open"][data-lui-initial-opening="immediate"] {
+  animation: none;
+}
+
+.lui-confirmation-dialog__body {
+  display: grid;
+  gap: 1rem;
+}
+
+.lui-confirmation-dialog__form {
+  display: grid;
+  gap: 1rem;
+}
+
+.lui-confirmation-dialog__copy {
+  color: var(--lui-text-soft);
+  font-size: var(--lui-font-size-sm);
+  line-height: 1.375rem;
+  overflow-wrap: anywhere;
+}
+
+.lui-confirmation-dialog__copy > :first-child {
+  margin-top: 0;
+}
+
+.lui-confirmation-dialog__copy > :last-child {
+  margin-bottom: 0;
+}
+
+.lui-confirmation-dialog__error {
+  margin: 0;
+  color: var(--lui-danger-text);
+  font-size: var(--lui-font-size-xs);
+  line-height: 18px;
+  overflow-wrap: anywhere;
+}
+
+.lui-dialog-notice {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--lui-brand) 28%, var(--lui-border-subtle));
+  border-radius: var(--lui-radius-panel);
+  padding: 13px 14px;
+  background: color-mix(in srgb, var(--lui-brand) 9%, transparent);
+}
+.lui-dialog-notice__icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: var(--lui-radius-panel);
+  background: var(--lui-brand-soft);
+  color: color-mix(in srgb, var(--lui-brand) 52%, var(--lui-text-primary));
+}
+.lui-dialog-notice__icon svg {
+  width: var(--lui-icon-size-lg);
+  height: var(--lui-icon-size-lg);
+}
+.lui-dialog-notice__content {
+  min-width: 0;
+  align-self: center;
+  color: var(--lui-text-secondary);
+  font-size: var(--lui-font-size-compact);
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+.lui-dialog-notice__content > :first-child {
+  margin-top: 0;
+}
+.lui-dialog-notice__content > :last-child {
+  margin-bottom: 0;
+}
+.lui-dialog-notice--danger {
+  border-color: color-mix(in srgb, var(--lui-danger) 30%, var(--lui-border-subtle));
+  background: color-mix(in srgb, var(--lui-danger) 8%, transparent);
+}
+.lui-dialog-notice--danger .lui-dialog-notice__icon {
+  background: var(--lui-coral-soft);
+  color: var(--lui-danger);
+}

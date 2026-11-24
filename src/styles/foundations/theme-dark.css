@@ -1,0 +1,14 @@
+:root {
+  color: var(--lui-text);
+  background-color: var(--lui-page-bg);
+  font-family: var(--lui-font);
+  font-size: var(--lui-font-size-sm);
+  line-height: 20px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-lui-theme="dark"],
+.lui-theme-dark {
+  color-scheme: dark;
+}

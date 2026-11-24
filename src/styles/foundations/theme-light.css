@@ -1,0 +1,71 @@
+:root[data-lui-theme="light"],
+.lui-theme-light {
+  color-scheme: light;
+
+  --lui-layer-0: #ffffff;
+  --lui-layer-1: #f8f9fb;
+  --lui-layer-2: #f1f3f6;
+  --lui-layer-3: #e8ebf0;
+  --lui-layer-4: #ffffff;
+  --lui-layer-5: #f3f5f8;
+  --lui-layer-6: #e0e4ea;
+  --lui-layer-7: #c8ced8;
+  --lui-layer-8: #667085;
+  --lui-layer-chat: #ffffff;
+  --lui-layer-hover: #edf0f4;
+  --lui-layer-own-message: color-mix(in srgb, var(--lui-brand-primary) 16%, #ffffff);
+
+  --lui-foreground-strong: #1d2027;
+  --lui-foreground: #343944;
+  --lui-foreground-muted: #475467;
+  --lui-foreground-subtle: #566172;
+  --lui-foreground-inverse: #ffffff;
+
+  --lui-nav-hover: rgb(29 32 39 / 6%);
+  --lui-nav-selected: color-mix(in srgb, var(--lui-brand-primary) 12%, transparent);
+  --lui-nav-border: rgb(29 32 39 / 14%);
+  --lui-control-border: rgb(29 32 39 / 20%);
+  --lui-control-border-hover: rgb(29 32 39 / 34%);
+  --lui-line: rgb(29 32 39 / 16%);
+  --lui-line-subtle: rgb(29 32 39 / 10%);
+  --lui-line-faint: rgb(29 32 39 / 6%);
+  --lui-line-strong: rgb(29 32 39 / 30%);
+  --lui-brand-soft: color-mix(in srgb, var(--lui-brand-primary) 13%, transparent);
+  --lui-success-soft: rgb(24 132 68 / 12%);
+  --lui-coral: #c83f4f;
+  --lui-coral-strong: #c83f4f;
+  --lui-coral-soft: rgb(200 63 79 / 11%);
+  --lui-warning-soft: rgb(168 111 0 / 12%);
+  --lui-text-on-accent: var(--lui-action-solid-foreground);
+  --lui-brand-text: color-mix(in srgb, var(--lui-brand-primary) 62%, black);
+  --lui-link: #1769aa;
+  --lui-success: #188444;
+  --lui-warning: #8a5a00;
+  --lui-danger: var(--lui-coral-strong);
+  --lui-danger-strong: #b42331;
+  --lui-danger-hover: #9d1f2b;
+  --lui-danger-pressed: #7f1922;
+  --lui-danger-text: #a72839;
+  --lui-focus: color-mix(in srgb, var(--lui-brand-primary) 62%, black);
+  --lui-control-border-focus: var(--lui-brand);
+  --lui-overlay-faint: rgb(29 32 39 / 3%);
+  --lui-overlay-hover: rgb(29 32 39 / 6%);
+  --lui-overlay-selected: rgb(29 32 39 / 10%);
+  --lui-overlay-strong: rgb(29 32 39 / 16%);
+  --lui-scrim-soft: rgb(17 24 39 / 10%);
+  --lui-scrim: rgb(17 24 39 / 24%);
+  --lui-scrim-strong: rgb(17 24 39 / 40%);
+  --lui-theme-switch-well: var(--lui-layer-3);
+  --lui-theme-switch-well-hover: var(--lui-layer-6);
+  --lui-theme-switch-well-inset:
+    inset 0 1px 2px var(--lui-scrim-soft), inset 0 0 0 1px var(--lui-line-subtle);
+  --lui-theme-switch-knob: var(--lui-layer-0);
+  --lui-theme-switch-knob-shadow:
+    0 1px 2px var(--lui-scrim-soft), 0 3px 7px var(--lui-scrim-soft),
+    inset 0 1px 0 var(--lui-foreground-inverse);
+}
+
+:root[data-lui-theme="light"][data-lui-accent="sun"],
+.lui-theme-light[data-lui-accent="sun"] {
+  --lui-brand-text: color-mix(in srgb, var(--lui-accent-sun) 72%, black);
+}

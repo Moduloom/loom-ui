@@ -1,0 +1,5 @@
+import {type ReactNode,useLayoutEffect,useRef} from 'react';
+import {Input} from './Input.js';
+import {cx} from '../utils/cn.js';
+export type CheckboxProps={label:ReactNode;checked:boolean;indeterminate?:boolean;disabled?:boolean;labelHidden?:boolean;className?:string;'aria-label'?:string;onCheckedChange:(checked:boolean)=>void};
+export function Checkbox({label,checked,indeterminate=false,disabled=false,labelHidden=false,className,'aria-label':ariaLabel,onCheckedChange}:CheckboxProps){const ref=useRef<HTMLInputElement>(null);useLayoutEffect(()=>{if(ref.current)ref.current.indeterminate=indeterminate},[indeterminate]);return <label className={cx('lui-checkbox',disabled&&'is-disabled',className)}><Input ref={ref} type="checkbox" checked={checked} disabled={disabled} aria-label={ariaLabel} aria-checked={indeterminate?'mixed':checked} onChange={event=>onCheckedChange(event.currentTarget.checked)}/><span className={cx('lui-checkbox__label',labelHidden&&'lui-visually-hidden')}>{label}</span></label>}

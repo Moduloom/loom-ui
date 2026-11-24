@@ -1,0 +1,56 @@
+.lui-tag-field__control {
+  flex-wrap: wrap;
+  gap: var(--lui-space-1);
+  padding: var(--lui-space-1) var(--lui-space-2);
+  cursor: text;
+}
+.lui-tag-field__chip {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  gap: var(--lui-space-1);
+  padding-left: var(--lui-space-2);
+  border-radius: var(--lui-radius-control);
+  background: var(--lui-overlay-selected);
+  color: var(--lui-text-primary);
+  font-size: var(--lui-font-size-sm);
+  line-height: var(--lui-tab-line-height);
+}
+.lui-tag-field__value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.lui-tag-field__remove {
+  flex-shrink: 0;
+  color: var(--lui-text-secondary);
+}
+.lui-tag-field__input {
+  flex: 1 1 calc(var(--lui-font-size-sm) * 6);
+  width: 0;
+  min-width: calc(var(--lui-font-size-sm) * 4);
+  min-height: var(--lui-tab-height);
+  padding: 0 var(--lui-space-1);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--lui-text-primary);
+  font-size: var(--lui-font-size-sm);
+  caret-color: var(--lui-text-primary);
+}
+.lui-tag-field__input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.lui-tag-field__input::placeholder {
+  color: var(--lui-text-subtle);
+}
+.lui-tag-field__control[data-disabled] {
+  background: var(--lui-field-disabled-bg);
+  color: var(--lui-text-subtle);
+  cursor: not-allowed;
+}
+.lui-tag-field__input:disabled {
+  color: var(--lui-text-subtle);
+  cursor: not-allowed;
+}

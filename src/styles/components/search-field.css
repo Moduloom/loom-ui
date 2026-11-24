@@ -1,0 +1,93 @@
+.lui-search-field {
+  display: grid;
+  min-width: 0;
+  min-height: 40px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--lui-control-border);
+  border-radius: var(--lui-radius-field);
+  padding: 0 8px 0 10px;
+  background: var(--lui-field-bg);
+  color: var(--lui-text-muted);
+  transition:
+    border-color var(--lui-duration-fast) ease,
+    background-color var(--lui-duration-fast) ease,
+    color var(--lui-duration-fast) ease,
+    width var(--lui-duration-standard) var(--lui-ease-standard);
+}
+
+.lui-search-field:hover:not(.is-disabled):not(:focus-within) {
+  border-color: var(--lui-control-border-hover);
+  background: var(--lui-field-hover);
+}
+
+.lui-search-field:focus-within {
+  border-color: var(--lui-control-border-focus);
+  background: var(--lui-field-hover);
+  color: var(--lui-text);
+}
+
+.lui-search-field.is-disabled {
+  background: var(--lui-field-disabled-bg);
+  color: var(--lui-text-subtle);
+  opacity: var(--lui-disabled-opacity);
+}
+
+.lui-search-field--compact {
+  min-height: 32px;
+  padding-inline: 8px;
+}
+
+.lui-search-field--expandable {
+  width: clamp(12rem, 24vw, 20rem);
+}
+
+.lui-search-field__icon {
+  width: var(--lui-icon-size-md);
+  height: var(--lui-icon-size-md);
+}
+
+.lui-search-field input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--lui-text);
+  font: var(--lui-font-size-sm) / 20px var(--lui-font);
+  outline: 0;
+}
+
+.lui-search-field input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.lui-search-field input::placeholder {
+  color: var(--lui-text-subtle);
+  opacity: 1;
+}
+
+.lui-search-field__clear {
+  width: 28px;
+  height: 28px;
+}
+
+.lui-search-field__collapsed {
+  transition:
+    background-color var(--lui-duration-fast) ease,
+    color var(--lui-duration-fast) ease,
+    width var(--lui-duration-standard) var(--lui-ease-standard);
+}
+
+@media (max-width: 32.5rem) {
+  .lui-search-field--expandable {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(html:not([data-loom-motion-preview])) :is(.lui-search-field, .lui-search-field__collapsed) {
+    transition-duration: 1ms;
+  }
+}

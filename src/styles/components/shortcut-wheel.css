@@ -1,0 +1,276 @@
+/* 快捷轮盘 ShortcutWheel：扇形操作轮盘，材质光感视觉，全部使用 lui Token。 */
+
+.lui-shortcut-wheel {
+  /* 私有可覆写材质变量：品牌仍用公开 token，物理高光/阴影用中性色并适配明暗 */
+  --lui-wheel-light: var(--lui-foreground-inverse, #fff);
+  --lui-wheel-ink: var(--lui-foreground-on-bright, #111214);
+  --lui-wheel-shadow-ink: var(--lui-foreground-on-bright, #111214);
+  /* 中性双层阴影 alpha：清晰接触影 + 远影，深色下整体加深 */
+  --lui-wheel-shadow-a1: 30%;
+  --lui-wheel-shadow-a2: 22%;
+  --lui-wheel-face: color-mix(in srgb, var(--lui-muted-panel) 72%, var(--lui-surface));
+  /* 激活面降饱和混合，保证 --lui-text 正文色在其上可读 */
+  --lui-wheel-active-face: color-mix(in srgb, var(--lui-accent) 20%, var(--lui-surface));
+  /* 所有轮盘文字/图标统一取主题正文色，不继承宿主前景色 */
+  color: var(--lui-text);
+  width: fit-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+/* 组件本地深色覆盖：页面级主题属性或组件自身带主题类/数据均可生效，不改全局主题 */
+:where([data-lui-theme='dark'], .lui-theme-dark) .lui-shortcut-wheel,
+.lui-shortcut-wheel[data-lui-theme='dark'],
+.lui-shortcut-wheel.lui-theme-dark {
+  --lui-wheel-shadow-a1: 65%;
+  --lui-wheel-shadow-a2: 45%;
+  --lui-wheel-face: color-mix(in srgb, var(--lui-surface) 86%, var(--lui-text));
+  --lui-wheel-active-face: color-mix(in srgb, var(--lui-accent) 32%, var(--lui-surface));
+}
+
+.lui-shortcut-wheel__sector {
+  /* lift/focus 由组件每帧从 spring scale 连续写入（0..1）：
+     阴影偏移与浓度、面色混合、finish 高光、非活动虚化均由此推导，无 is-active 瞬时开关 */
+  --lui-wheel-lift: 0;
+  filter: blur(calc((var(--lui-wheel-focus, 0) - var(--lui-wheel-lift)) * 0.7px))
+    drop-shadow(
+      0 calc(var(--lui-wheel-lift) * 4px) calc(var(--lui-wheel-lift) * 5px)
+      color-mix(in srgb, var(--lui-wheel-shadow-ink) calc(var(--lui-wheel-shadow-a1) * var(--lui-wheel-lift)), transparent)
+    )
+    drop-shadow(
+      0 calc(var(--lui-wheel-lift) * 12px) calc(var(--lui-wheel-lift) * 12px)
+      color-mix(in srgb, var(--lui-wheel-shadow-ink) calc(var(--lui-wheel-shadow-a2) * var(--lui-wheel-lift)), transparent)
+    );
+}
+
+.lui-shortcut-wheel__sector.is-disabled {
+  opacity: 0.4;
+}
+
+.lui-shortcut-wheel__canvas {
+  position: relative;
+  isolation: isolate;
+  width: var(--lui-wheel-size);
+  height: var(--lui-wheel-size);
+  flex-shrink: 0;
+}
+
+.lui-shortcut-wheel__visual {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+
+/* 无描边材质色面：普通/激活均不画常驻边线，仅键盘焦点时显示扇区描边；
+   面色随 lift 在基础面与激活面之间连续混合 */
+.lui-shortcut-wheel__surface {
+  fill: color-mix(in srgb, var(--lui-wheel-active-face) calc(var(--lui-wheel-lift, 0) * 100%), var(--lui-wheel-face));
+  stroke: none;
+}
+
+/* disabled 的整面降低由 __sector 承担，surface 不再叠加 */
+.lui-shortcut-wheel__surface.is-focused {
+  stroke: var(--lui-text);
+  stroke-width: 2px;
+}
+
+/* finish 渐变：顶部亮、中心几乎透明、底部微暗，给薄实体材质感 */
+.lui-shortcut-wheel .lui-shortcut-wheel__finish-top { stop-color: var(--lui-wheel-light); stop-opacity: 0.16; }
+.lui-shortcut-wheel .lui-shortcut-wheel__finish-mid { stop-color: var(--lui-wheel-light); stop-opacity: 0.02; }
+.lui-shortcut-wheel .lui-shortcut-wheel__finish-bottom { stop-color: var(--lui-wheel-ink); stop-opacity: 0.08; }
+
+/* 深色下 finish 更收敛，避免刻痕感与油亮玻璃 */
+:where([data-lui-theme='dark'], .lui-theme-dark) .lui-shortcut-wheel .lui-shortcut-wheel__finish-top,
+.lui-shortcut-wheel[data-lui-theme='dark'] .lui-shortcut-wheel__finish-top,
+.lui-shortcut-wheel.lui-theme-dark .lui-shortcut-wheel__finish-top { stop-opacity: 0.07; }
+:where([data-lui-theme='dark'], .lui-theme-dark) .lui-shortcut-wheel .lui-shortcut-wheel__finish-mid,
+.lui-shortcut-wheel[data-lui-theme='dark'] .lui-shortcut-wheel__finish-mid,
+.lui-shortcut-wheel.lui-theme-dark .lui-shortcut-wheel__finish-mid { stop-opacity: 0; }
+:where([data-lui-theme='dark'], .lui-theme-dark) .lui-shortcut-wheel .lui-shortcut-wheel__finish-bottom,
+.lui-shortcut-wheel[data-lui-theme='dark'] .lui-shortcut-wheel__finish-bottom,
+.lui-shortcut-wheel.lui-theme-dark .lui-shortcut-wheel__finish-bottom { stop-opacity: 0.025; }
+
+.lui-shortcut-wheel__finish {
+  /* 高光随抬升连续增强，落回时与 scale/阴影一起返回 */
+  opacity: calc(0.25 + var(--lui-wheel-lift, 0) * 0.45);
+}
+
+.lui-shortcut-wheel__hit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  z-index: 2;
+}
+
+.lui-shortcut-wheel__hit.is-active {
+  z-index: 3;
+}
+
+.lui-shortcut-wheel__content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  --lui-wheel-lift: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  color: var(--lui-text);
+  /* 非活动项轻微虚化/降不透明度由 focus-lift 连续推导；层级由组件按最近活动顺序内联给出 */
+  filter: blur(calc((var(--lui-wheel-focus, 0) - var(--lui-wheel-lift)) * 0.3px));
+  opacity: calc(1 - (var(--lui-wheel-focus, 0) - var(--lui-wheel-lift)) * 0.06);
+}
+
+.lui-shortcut-wheel__content.is-disabled {
+  opacity: 0.4;
+}
+
+.lui-shortcut-wheel__icon {
+  flex: none;
+  width: var(--lui-wheel-icon-size, 24px);
+  height: var(--lui-wheel-icon-size, 24px);
+}
+
+.lui-shortcut-wheel__icon > svg,
+.lui-shortcut-wheel__icon > img {
+  width: 100%;
+  height: 100%;
+}
+
+.lui-shortcut-wheel__label {
+  max-inline-size: 104px;
+  font-size: var(--lui-font-body, 13px);
+  font-family: inherit;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.lui-shortcut-wheel__center {
+  position: absolute;
+  width: var(--lui-wheel-hub-size);
+  height: var(--lui-wheel-hub-size);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 26%, color-mix(in srgb, var(--lui-wheel-light) 10%, transparent), transparent 58%),
+    linear-gradient(color-mix(in srgb, var(--lui-wheel-ink) 5%, transparent), color-mix(in srgb, var(--lui-wheel-light) 6%, transparent)),
+    var(--lui-surface);
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  /* 中央字号跟随主题 Token，小 hub 时按比例保守缩小；默认 hub 140 时为 20/14px */
+  --lui-wheel-hub-title-size: min(var(--lui-font-size-xl, 20px), calc(var(--lui-wheel-hub-size) * 0.18));
+  --lui-wheel-hub-hint-size: min(var(--lui-font-size-sm, 14px), calc(var(--lui-wheel-hub-size) * 0.13));
+}
+
+/* 深色中心底盘：纯表面底，无边线 */
+:where([data-lui-theme='dark'], .lui-theme-dark) .lui-shortcut-wheel .lui-shortcut-wheel__center,
+.lui-shortcut-wheel[data-lui-theme='dark'] .lui-shortcut-wheel__center,
+.lui-shortcut-wheel.lui-theme-dark .lui-shortcut-wheel__center {
+  background: var(--lui-surface);
+}
+
+.lui-shortcut-wheel__center-copy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lui-shortcut-wheel__center-layer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  /* 标题槽固定两行、提示槽固定一行，hint/key 切换不顶动排版 */
+  grid-template-rows:
+    calc(var(--lui-wheel-hub-title-size) * 2.4)
+    calc(var(--lui-wheel-hub-hint-size) * 1.7);
+  row-gap: calc(var(--lui-wheel-hub-title-size) * 0.3);
+  align-content: center;
+  justify-items: center;
+  padding: 0 10%;
+}
+
+/* 入场/离场动画由组件用 Web Animations API 驱动：可中断、离场从真实当前值续走；
+   此处仅保留离场层不参与命中等布局约束 */
+.lui-shortcut-wheel__center-layer.is-leaving {
+  pointer-events: none;
+}
+
+.lui-shortcut-wheel__center-label {
+  grid-row: 1;
+  width: 100%;
+  align-self: center;
+  font-size: var(--lui-wheel-hub-title-size);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  /* 名称最多两行，单行也在固定标题槽内居中 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  color: var(--lui-text);
+}
+
+.lui-shortcut-wheel__center-hint {
+  grid-row: 2;
+  align-self: center;
+  justify-self: center;
+  box-sizing: border-box;
+  height: calc(var(--lui-wheel-hub-hint-size) * 1.7);
+  line-height: calc(var(--lui-wheel-hub-hint-size) * 1.7);
+  font-size: var(--lui-wheel-hub-hint-size);
+  border: 1px solid transparent;
+  color: var(--lui-text-muted);
+}
+
+.lui-shortcut-wheel__center-hint.is-key {
+  font-family: var(--lui-font-mono, ui-monospace, monospace);
+  padding: 0 4px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--lui-text) 10%, transparent);
+}
+
+.lui-shortcut-wheel__measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout style;
+}
+
+.lui-shortcut-wheel__measure .lui-shortcut-wheel__content {
+  position: relative;
+  width: max-content;
+  transform: none;
+}
+
+/* 键盘焦点由 surface.is-focused 扇区 2px 描边反馈，hit 按钮本身不显示矩形 outline */
+.lui-shortcut-wheel__hit:focus-visible {
+  outline: none;
+}
+
+.lui-shortcut-wheel__center:focus-visible {
+  outline: 2px solid var(--lui-accent);
+  outline-offset: 2px;
+}
+
+.lui-shortcut-wheel[data-motion='reduced'] .lui-shortcut-wheel__center-layer.is-leaving {
+  display: none;
+}

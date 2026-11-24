@@ -1,0 +1,396 @@
+:root,
+.lui-theme-dark {
+  --lui-accent-sun: #f5c400;
+  --lui-accent-orange: rgb(252 130 43);
+  --lui-accent-sky: #4c8dff;
+  --lui-accent-mint: #2ac3b0;
+  --lui-accent-grass: #3dcf70;
+  --lui-accent-violet: #9b7bff;
+  --lui-accent-rose: #f071a5;
+  --lui-brand-primary: var(--lui-accent-sun);
+
+  --lui-form-section-gap: var(--lui-space-7);
+  --lui-form-field-gap: var(--lui-space-7);
+  --lui-layer-0: #111214;
+  --lui-layer-1: #1e1f22;
+  --lui-layer-2: #24262b;
+  --lui-layer-3: #2b2d31;
+  --lui-layer-4: #313338;
+  --lui-layer-5: #383a40;
+  --lui-layer-6: #404249;
+  --lui-layer-7: #4e5058;
+  --lui-layer-8: #6d6f78;
+  --lui-layer-chat: oklab(0.219511 0.00211037 -0.00744569);
+  --lui-layer-hover: #3f4147;
+  --lui-layer-own-message: #35373d;
+  --lui-foreground-strong: #f2f3f5;
+  --lui-foreground: #dbdee1;
+  --lui-foreground-muted: #b5bac1;
+  --lui-foreground-subtle: #949ba4;
+  --lui-foreground-inverse: #fff;
+  --lui-action-solid-foreground: #fff !important;
+  --lui-foreground-on-bright: #111214;
+  --lui-selection-indicator-foreground: var(--lui-foreground-inverse);
+  --lui-selection-indicator-backplate: var(--lui-foreground-on-bright);
+  --lui-nav-bg: var(--lui-layer-1);
+  --lui-nav-raised: var(--lui-layer-3);
+  --lui-nav-hover: rgba(255, 255, 255, 0.07);
+  --lui-nav-selected: rgba(255, 255, 255, 0.11);
+  --lui-nav-border: rgba(255, 255, 255, 0.16);
+  --lui-nav-text: var(--lui-foreground-strong);
+  --lui-nav-text-muted: var(--lui-foreground-muted);
+
+  --lui-page-bg: var(--lui-layer-4);
+  --lui-chat-bg: var(--lui-layer-chat);
+  --lui-surface-sunken: var(--lui-layer-0);
+  --lui-surface-elevated: var(--lui-layer-5);
+  --lui-surface: var(--lui-layer-3);
+  --lui-surface-muted: var(--lui-layer-5);
+  --lui-surface-strong: var(--lui-layer-6);
+  --lui-surface-own-message: var(--lui-layer-own-message);
+  --lui-surface-hover: var(--lui-layer-hover);
+  --lui-surface-hover-strong: var(--lui-layer-7);
+  --lui-surface-reply: var(--lui-layer-2);
+  --lui-control-bg: var(--lui-layer-1);
+  --lui-control-hover: var(--lui-layer-2);
+  --lui-control-border: rgba(255, 255, 255, 0.22);
+  --lui-control-border-hover: rgba(255, 255, 255, 0.34);
+  --lui-control-border-focus: var(--lui-focus);
+  --lui-control-disabled-bg: var(--lui-layer-3);
+  --lui-interactive-muted: var(--lui-layer-8);
+  --lui-field-bg: var(--lui-control-hover);
+  --lui-field-hover: var(--lui-surface);
+  --lui-field-disabled-bg: var(--lui-control-bg);
+  --lui-selected: var(--lui-layer-6);
+  --lui-line: rgba(255, 255, 255, 0.18);
+  --lui-line-subtle: rgba(255, 255, 255, 0.11);
+  --lui-line-faint: rgba(255, 255, 255, 0.07);
+  --lui-line-strong: rgba(255, 255, 255, 0.34);
+  --lui-text: var(--lui-foreground-strong);
+  --lui-text-soft: var(--lui-foreground);
+  --lui-text-muted: var(--lui-foreground-muted);
+  --lui-text-subtle: var(--lui-foreground-subtle);
+  --lui-text-on-accent: var(--lui-action-solid-foreground);
+  --lui-brand-soft: color-mix(in srgb, var(--lui-brand-primary) 18%, transparent);
+  --lui-success-soft: rgba(35, 165, 89, 0.16);
+  --lui-coral: #f08078;
+  --lui-coral-strong: #f08078;
+  --lui-coral-soft: rgba(240, 128, 120, 0.14);
+  --lui-warning-soft: rgba(233, 185, 73, 0.14);
+  --lui-rail-art-fill: var(--lui-foreground-inverse);
+  --lui-avatar-fg: #ffffff;
+  --lui-avatar-palette-0: #5865f2;
+  --lui-avatar-palette-1: #3ba55d;
+  --lui-avatar-palette-2: #ed4245;
+  --lui-avatar-palette-3: #c44edb;
+  --lui-avatar-palette-4: #3d9be9;
+  --lui-avatar-palette-5: #f06292;
+  --lui-avatar-palette-6: #1abc9c;
+  --lui-avatar-palette-7: #7c6cf0;
+  --lui-avatar-tone: var(--lui-avatar-palette-0);
+  --lui-bg-sunken: var(--lui-control-bg);
+  --lui-bg-sidebar: var(--lui-nav-bg);
+  --lui-bg-raised: var(--lui-surface);
+  --lui-bg-hover: var(--lui-overlay-hover);
+  --lui-bg-selected: var(--lui-selected);
+  --lui-border: var(--lui-line);
+  --lui-border-subtle: var(--lui-line-subtle);
+  --lui-text-primary: var(--lui-text);
+  --lui-text-secondary: var(--lui-text-muted);
+  --lui-text-tertiary: var(--lui-text-subtle);
+  --lui-brand: var(--lui-brand-primary);
+  --lui-brand-hover: color-mix(in srgb, var(--lui-brand-primary) 94%, black);
+  --lui-brand-pressed: color-mix(in srgb, var(--lui-brand-primary) 88%, black);
+  --lui-brand-foreground: var(--lui-action-solid-foreground);
+  --lui-brand-text: color-mix(in srgb, var(--lui-brand-primary) 38%, white);
+  --lui-reaction-selected-bg: color-mix(in srgb, var(--lui-brand-primary) 18%, transparent);
+  --lui-reaction-selected-border: var(--lui-brand-primary);
+  --lui-announcement-message-bg: var(--lui-reaction-selected-bg);
+  --lui-announcement-message-hover: var(--lui-reaction-selected-bg);
+  --lui-announcement-message-border: var(--lui-reaction-selected-border);
+  --lui-announcement-message-fg: var(--lui-text);
+  --lui-link: #72b7f2;
+  --lui-success: #3fbf72;
+  --lui-warning: #e9b949;
+  --lui-danger: var(--lui-coral-strong);
+  --lui-danger-strong: #f23f42;
+  --lui-danger-hover: #da373c;
+  --lui-danger-pressed: #a92e29;
+  --lui-danger-text: #ffadb3;
+  --lui-focus: color-mix(in srgb, var(--lui-brand-primary) 72%, white);
+  --lui-overlay-faint: rgba(255, 255, 255, 0.04);
+  --lui-overlay-hover: rgba(255, 255, 255, 0.07);
+  --lui-overlay-selected: rgba(255, 255, 255, 0.11);
+  --lui-overlay-strong: rgba(255, 255, 255, 0.18);
+  --lui-scrim-soft: rgba(0, 0, 0, 0.16);
+  --lui-scrim: rgba(0, 0, 0, 0.32);
+  --lui-scrim-strong: rgba(0, 0, 0, 0.46);
+
+  --lui-bg: var(--lui-page-bg);
+  --lui-sidebar: var(--lui-nav-bg);
+  --lui-sidebar-raised: var(--lui-nav-raised);
+  --lui-sidebar-text: var(--lui-nav-text);
+  --lui-sidebar-muted: var(--lui-nav-text-muted);
+  --lui-shadow-subtle: 0 2px 8px -4px var(--lui-scrim);
+  --lui-shadow: 0 10px 28px var(--lui-scrim);
+  --lui-shadow-menu:
+    0 2px 8px var(--lui-scrim-soft), 0 14px 30px var(--lui-scrim);
+  --lui-shadow-selection: 0 2px 6px var(--lui-scrim-soft);
+  --lui-shadow-select:
+    0 2px 6px var(--lui-scrim-soft), 0 5px 12px -6px var(--lui-scrim);
+  --lui-shadow-select-active:
+    0 3px 10px var(--lui-scrim), 0 8px 18px -8px var(--lui-scrim);
+  --lui-dialog-overlay-bg: color-mix(in srgb, var(--lui-scrim-strong) 92%, transparent);
+  --lui-dialog-overlay-bg-strong: color-mix(in srgb, var(--lui-scrim-strong) 96%, transparent);
+  --lui-dialog-overlay-blur: 6px;
+  --lui-dialog-overlay-blur-strong: 10px;
+  --lui-layer-desktop-titlebar: 100;
+  --lui-layer-dialog-overlay: 900;
+  --lui-layer-dialog: 901;
+  --lui-layer-dialog-overlay-nested: 910;
+  --lui-layer-dialog-nested: 911;
+  --lui-layer-popover: 950;
+  --lui-layer-tooltip: 1000;
+  --lui-layer-image-viewer-overlay: 1010;
+  --lui-layer-image-viewer: 1011;
+  --lui-font: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --lui-font-emoji: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+  --lui-space-1: 4px;
+  --lui-space-2: 6px;
+  --lui-space-3: 8px;
+  --lui-space-4: 10px;
+  --lui-space-5: 12px;
+  --lui-space-6: 14px;
+  --lui-space-7: 16px;
+  --lui-space-8: 18px;
+  --lui-space-9: 20px;
+  --lui-space-10: 24px;
+  --lui-space-11: 28px;
+  --lui-space-12: 32px;
+  --lui-tab-height: 36px;
+  --lui-tab-line-height: 20px;
+  --lui-tab-weight: 600;
+  --lui-tab-well: var(--lui-control-bg);
+  --lui-tab-selected-bg: var(--lui-brand);
+  --lui-tab-selected-foreground: var(--lui-brand-foreground);
+  --lui-tab-selected-hover: var(--lui-brand-hover);
+  --lui-tab-selected-pressed: var(--lui-brand-pressed);
+  --lui-duration-tab-slide: 240ms;
+  --lui-ease-tab-leading: cubic-bezier(0.12, 0.96, 0.2, 1);
+  --lui-ease-tab-trailing: cubic-bezier(0.4, 0.02, 0.18, 1);
+  --lui-tab-squash-y: 0.86;
+  --lui-tab-badge-bg: var(--lui-overlay-selected);
+  --lui-tab-selected-badge-bg: var(--lui-scrim-soft);
+  --lui-message-highlight-inner-offset: 8px;
+  --lui-message-highlight-self-offset: 64px;
+  --lui-message-highlight-other-offset: 68px;
+  --lui-font-size-micro: 10px;
+  --lui-font-size-detail: 11px;
+  --lui-font-size-xs: 12px;
+  --lui-font-size-compact: 13px;
+  --lui-font-size-sm: 14px;
+  --lui-font-size-body: 15px;
+  --lui-font-size-base: 16px;
+  --lui-font-size-lg: 18px;
+  --lui-font-size-xl: 20px;
+  --lui-font-size-2xl: 24px;
+  --lui-font-size-3xl: 30px;
+  --lui-font-size-4xl: 36px;
+  --lui-font-size-emoji-compact: 36px;
+  --lui-font-size-emoji: 48px;
+  --lui-icon-size-sm: 14px;
+  --lui-icon-size-md: 16px;
+  --lui-icon-size-lg: 18px;
+  --lui-icon-size-xl: 20px;
+  --lui-icon-size-2xl: 22px;
+  --lui-icon-size-3xl: 24px;
+  --lui-icon-size-4xl: 28px;
+  --lui-icon-size-5xl: 32px;
+  --lui-icon-size-6xl: 40px;
+  --lui-avatar-size-hero: 68px;
+  --lui-touch-target: 44px;
+  --lui-field-control-height: 40px;
+  --lui-dialog-body-inline-padding: 24px;
+  --lui-dialog-body-bottom-padding: 24px;
+  --lui-dialog-footer-block-padding: 16px;
+  --lui-sortable-row-height: 42px;
+  --lui-settings-item-min-height: 60px;
+  --lui-announcement-height: 44px;
+  --lui-announcement-inline: 12px;
+  --lui-announcement-top: 8px;
+  --lui-announcement-gap: 10px;
+  --lui-announcement-padding-start: 14px;
+  --lui-announcement-padding-end: 6px;
+  --lui-permission-placeholder-height: 180px;
+  --lui-settings-app-logo-size: 64px;
+  --lui-update-progress-height: 4px;
+  --lui-message-unread-divider-height: 24px;
+  --lui-message-system-row-height: 36px;
+  --lui-message-system-icon-size: 24px;
+  --lui-message-reaction-height: 28px;
+  --lui-message-reaction-toggle-width: 28px;
+  --lui-message-reaction-count-width: 24px;
+  --lui-message-reaction-padding-top: 5px;
+  --lui-message-reaction-count-padding: 2px;
+  --lui-message-inline-image-size: 88px;
+  --lui-message-file-width: 320px;
+  --lui-message-inline-image-status-width: calc(100% - 8px);
+  --lui-image-viewer-toolbar-height: 44px;
+  --lui-image-viewer-toolbar-gap: 2px;
+  --lui-image-viewer-zoom-width: 48px;
+  --lui-image-viewer-canvas-width: min(1088px, calc(100vw - 160px));
+  --lui-image-viewer-canvas-height: min(704px, calc(100dvh - 160px));
+  --lui-image-viewer-navigation-width: 48px;
+  --lui-image-viewer-navigation-height: 64px;
+  --lui-image-viewer-info-width: min(576px, calc(100vw - 48px));
+  --lui-image-viewer-image-max-width: calc(var(--lui-image-viewer-canvas-width) - 40px);
+  --lui-image-viewer-image-max-height: calc(var(--lui-image-viewer-canvas-height) - 40px);
+  --lui-image-viewer-safe-top: max(12px, env(safe-area-inset-top));
+  --lui-image-viewer-safe-bottom: max(12px, env(safe-area-inset-bottom));
+  --lui-image-viewer-navigation-inset: max(16px, calc(50vw - min(544px, calc(50vw - 80px)) - 56px));
+  --lui-image-viewer-control-bg: color-mix(in srgb, var(--lui-surface-sunken) 84%, transparent);
+  --lui-image-viewer-control-hover: color-mix(in srgb, var(--lui-surface-sunken) 94%, transparent);
+  --lui-image-viewer-backdrop-blur: 12px;
+  --lui-image-viewer-hover-scale: 1.04;
+  --lui-image-viewer-press-scale: 0.96;
+  --lui-announcement-editor-action-size: 34px;
+  --lui-announcement-editor-toolbar-height: 42px;
+  --lui-settings-compact-action-size: 30px;
+  --lui-settings-audit-icon-size: 34px;
+  --lui-settings-status-dot-size: 6px;
+  --lui-invite-avatar-size: 40px;
+  --lui-nickname-action-size: 26px;
+  --lui-announcement-card-max-height: 68dvh;
+  --lui-announcement-card-visual-min-height: 190px;
+  --lui-announcement-card-content-top: 22px;
+  --lui-announcement-title-padding-top: 54px;
+  --lui-announcement-list-item-height: 96px;
+  --lui-announcement-list-visual-width: 88px;
+  --lui-announcement-list-visual-height: 55px;
+  --lui-announcement-list-count-inset: 5px;
+  --lui-announcement-list-count-padding-block: 2px;
+  --lui-attention-dialog-height: min(544px, calc(100dvh - 144px));
+  --lui-attention-overview-icon-size: 30px;
+  --lui-attention-filter-height: 30px;
+  --lui-attention-select-height: 32px;
+  --lui-attention-select-width: 240px;
+  --lui-attention-card-action-height: 28px;
+  --lui-attention-card-gap: 11px;
+  --lui-attention-group-header-top: 3px;
+  --lui-attention-filter-max-width: 320px;
+  --lui-attention-chevron-shift: 2px;
+  --lui-attention-scroll-width: calc(100% + var(--lui-space-5));
+  --lui-attention-summary-line-height: 1.55;
+  --lui-announcement-title-line-height: 1.3;
+  --lui-focus-ring-inset: -2px;
+  --lui-announcement-card-width: 480px;
+  --lui-announcement-list-width: 680px;
+  --lui-shadow-announcement-message: inset 0 0 0 1px var(--lui-announcement-message-border);
+  --lui-announcement-visual-fade: linear-gradient(to bottom, var(--lui-scrim-soft), transparent 40%);
+  --lui-announcement-title-fade: linear-gradient(to bottom, transparent, var(--lui-scrim-strong));
+  --lui-announcement-backdrop-blur: 10px;
+
+  --lui-radius-sm: 4px;
+  --lui-radius-control: 6px;
+  --lui-radius-field: 10px;
+  --lui-radius-announcement-toolbar: calc(var(--lui-radius-field) - 1px);
+  --lui-radius-panel: 8px;
+  --lui-radius-message: 10px;
+  --lui-radius-button: var(--lui-radius-field);
+  --lui-radius-large: 12px;
+  --lui-radius-xl: 16px;
+  --lui-radius-dialog: 20px;
+  --lui-radius-pill: 999px;
+  --lui-radius-circle: 50%;
+  --lui-duration-fast: 140ms;
+  --lui-duration-standard: 200ms;
+  --lui-field-inline-control-width: 80px;
+  --lui-settings-control-column: minmax(15rem, 19rem);
+  --lui-field-label-weight: 600;
+  --lui-field-label-line-height: 20px;
+  --lui-field-support-line-height: 18px;
+  --lui-duration-theme-switch: 240ms;
+  --lui-duration-theme-reveal: 560ms;
+  --lui-duration-accent-reveal: 180ms;
+  --lui-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --lui-message-max-width: 640px;
+  --lui-message-min-height: 40px;
+  --lui-message-line-height: 20px;
+  --lui-message-font-weight: 500;
+  --lui-message-radius: var(--lui-radius-large);
+  --lui-message-padding-block: var(--lui-space-2);
+  --lui-message-padding-inline: var(--lui-space-5);
+  --lui-message-gap: var(--lui-space-4);
+  --lui-message-offset: var(--lui-space-3);
+  --lui-message-viewport-y: 15dvh;
+  --lui-message-surface: var(--lui-surface-elevated);
+  --lui-message-border: var(--lui-line-subtle);
+  --lui-message-shadow: var(--lui-shadow-subtle);
+  --lui-message-layer: 1100;
+  --lui-message-overlay-layer: 30;
+  --lui-message-spin-duration: 800ms;
+  --lui-ease-theme-reveal: cubic-bezier(0.22, 0.08, 0.16, 1);
+  --lui-theme-switch-well: var(--lui-layer-0);
+  --lui-theme-switch-well-hover: var(--lui-layer-1);
+  --lui-theme-switch-well-inset:
+    inset 0 1px 3px var(--lui-scrim), inset 0 0 0 1px var(--lui-line-faint);
+  --lui-theme-switch-knob: var(--lui-layer-4);
+  --lui-theme-switch-knob-shadow:
+    0 1px 2px var(--lui-scrim), 0 4px 10px var(--lui-scrim-soft),
+    inset 0 1px 0 var(--lui-overlay-strong);
+  --lui-focus-ring-width: 2px;
+  --lui-focus-ring-offset: 2px;
+  --lui-disabled-opacity: 0.46;
+  --lui-state-hover-bg: var(--lui-overlay-hover);
+  --lui-state-selected-bg: var(--lui-overlay-selected);
+  --lui-state-danger-bg: var(--lui-coral-soft);
+  --lui-state-danger-fg: var(--lui-danger-text);
+}
+
+:root[data-lui-accent="sun"],
+.lui-theme-dark[data-lui-accent="sun"],
+.lui-theme-light[data-lui-accent="sun"] {
+  --lui-brand-primary: var(--lui-accent-sun);
+  --lui-brand-text: var(--lui-accent-sun);
+}
+
+:root[data-lui-accent="orange"],
+.lui-theme-dark[data-lui-accent="orange"],
+.lui-theme-light[data-lui-accent="orange"] {
+  --lui-brand-primary: var(--lui-accent-orange);
+}
+
+:root[data-lui-accent="sky"],
+.lui-theme-dark[data-lui-accent="sky"],
+.lui-theme-light[data-lui-accent="sky"] {
+  --lui-brand-primary: var(--lui-accent-sky);
+}
+
+:root[data-lui-accent="mint"],
+.lui-theme-dark[data-lui-accent="mint"],
+.lui-theme-light[data-lui-accent="mint"] {
+  --lui-brand-primary: var(--lui-accent-mint);
+}
+
+:root[data-lui-accent="grass"],
+.lui-theme-dark[data-lui-accent="grass"],
+.lui-theme-light[data-lui-accent="grass"] {
+  --lui-brand-primary: var(--lui-accent-grass);
+}
+
+:root[data-lui-accent="violet"],
+.lui-theme-dark[data-lui-accent="violet"],
+.lui-theme-light[data-lui-accent="violet"] {
+  --lui-brand-primary: var(--lui-accent-violet);
+}
+
+:root[data-lui-accent="rose"],
+.lui-theme-dark[data-lui-accent="rose"],
+.lui-theme-light[data-lui-accent="rose"] {
+  --lui-brand-primary: var(--lui-accent-rose);
+}
+
+html.lui-palette-switching,
+html.lui-palette-switching * {
+  transition: none !important;
+}

@@ -1,0 +1,93 @@
+.lui-disclosure-chevron {
+  display: block;
+  overflow: visible;
+  flex: 0 0 auto;
+}
+
+.lui-disclosure-chevron__stroke {
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-box: view-box;
+}
+
+.lui-disclosure-chevron__joined {
+  transform-origin: 10px 8.925px;
+}
+
+.lui-disclosure-chevron[data-expanded="true"] .lui-disclosure-chevron__joined {
+  transform: rotate(180deg);
+}
+
+.lui-disclosure-chevron__motion-stroke {
+  opacity: 0;
+}
+
+.lui-disclosure-chevron[data-motion] .lui-disclosure-chevron__joined {
+  opacity: 0;
+}
+
+.lui-disclosure-chevron[data-motion] .lui-disclosure-chevron__motion-stroke {
+  opacity: 1;
+  will-change: transform;
+}
+
+.lui-disclosure-chevron[data-motion="opening"] .lui-disclosure-chevron__stroke--left {
+  animation: lui-disclosure-chevron-open-left 160ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.lui-disclosure-chevron[data-motion="opening"] .lui-disclosure-chevron__stroke--right {
+  animation: lui-disclosure-chevron-open-right 160ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.lui-disclosure-chevron[data-motion="closing"] .lui-disclosure-chevron__stroke--left {
+  animation: lui-disclosure-chevron-close-left 160ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.lui-disclosure-chevron[data-motion="closing"] .lui-disclosure-chevron__stroke--right {
+  animation: lui-disclosure-chevron-close-right 160ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes lui-disclosure-chevron-open-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(5.2px);
+  }
+}
+
+@keyframes lui-disclosure-chevron-open-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-5.2px);
+  }
+}
+
+@keyframes lui-disclosure-chevron-close-left {
+  from {
+    transform: translateX(5.2px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes lui-disclosure-chevron-close-right {
+  from {
+    transform: translateX(-5.2px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(html:not([data-loom-motion-preview])) .lui-disclosure-chevron[data-motion]
+    :is(.lui-disclosure-chevron__stroke--left, .lui-disclosure-chevron__stroke--right) {
+    animation-duration: 0.01ms;
+  }
+}

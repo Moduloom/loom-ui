@@ -1,0 +1,104 @@
+.lui-avatar {
+  position: relative;
+  display: inline-grid;
+  overflow: hidden;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: var(--lui-radius-circle);
+  background: transparent;
+  user-select: none;
+}
+.lui-avatar::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+.lui-avatar img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  opacity: 0;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+.lui-avatar--image-loaded img {
+  opacity: 1;
+}
+.lui-avatar img.lui-avatar__incoming {
+  opacity: 0;
+}
+.lui-avatar-tone {
+  --lui-avatar-tone: var(--lui-avatar-palette-0);
+}
+.lui-avatar-tone[data-tone="0"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-0);
+}
+.lui-avatar-tone[data-tone="1"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-1);
+}
+.lui-avatar-tone[data-tone="2"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-2);
+}
+.lui-avatar-tone[data-tone="3"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-3);
+}
+.lui-avatar-tone[data-tone="4"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-4);
+}
+.lui-avatar-tone[data-tone="5"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-5);
+}
+.lui-avatar-tone[data-tone="6"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-6);
+}
+.lui-avatar-tone[data-tone="7"] {
+  --lui-avatar-tone: var(--lui-avatar-palette-7);
+}
+
+.lui-avatar__fallback {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  color: var(--lui-avatar-fg);
+  background: var(--lui-avatar-tone);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  transition: none;
+}
+.lui-avatar--xsmall {
+  width: 24px;
+  height: 24px;
+  font-size: var(--lui-font-size-micro);
+}
+.lui-avatar--xsmall::after {
+  box-shadow: none;
+}
+.lui-avatar--small {
+  width: 32px;
+  height: 32px;
+  font-size: var(--lui-font-size-xs);
+}
+.lui-avatar--medium {
+  width: 40px;
+  height: 40px;
+  font-size: var(--lui-font-size-sm);
+}
+.lui-avatar--large {
+  width: 54px;
+  height: 54px;
+  font-size: var(--lui-font-size-lg);
+}
+.lui-avatar--stage {
+  width: 82px;
+  height: 82px;
+  font-size: var(--lui-font-size-2xl);
+}

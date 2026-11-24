@@ -1,0 +1,3 @@
+.lui-native-choice{width:14px;height:14px;flex-shrink:0;accent-color:var(--lui-accent);cursor:pointer}.lui-checkbox{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:var(--lui-font-sm);color:var(--lui-fg)}.lui-checkbox::before{content:'';position:absolute;inset:-5px 0}.lui-checkbox.is-disabled{cursor:not-allowed;opacity:.45}.lui-checkbox__label{min-width:0;line-height:1.6}
+
+.lui-checkbox__label { min-width:0; overflow-wrap:anywhere; }

@@ -1,0 +1,172 @@
+.lui-date-field {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.lui-date-field__label {
+  color: var(--lui-text-muted);
+  font-size: var(--lui-font-size-xs);
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.lui-date-field__anchor {
+  width: 100%;
+}
+
+.lui-date-field__trigger {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--lui-control-border);
+  border-radius: var(--lui-radius-field);
+  padding: 9px 12px;
+  background: var(--lui-field-bg);
+  color: var(--lui-text-soft);
+  cursor: pointer;
+  font-family: var(--lui-font);
+  font-size: var(--lui-font-size-sm);
+  font-weight: 400;
+  line-height: 20px;
+  transition:
+    border-color var(--lui-duration-fast) ease,
+    background-color var(--lui-duration-fast) ease,
+    color var(--lui-duration-fast) ease;
+}
+
+.lui-date-field__trigger:disabled {
+  cursor: not-allowed;
+  opacity: var(--lui-disabled-opacity);
+}
+
+.lui-date-field__trigger:hover:not(:disabled),
+.lui-date-field__trigger[aria-expanded="true"] {
+  border-color: var(--lui-control-border-hover);
+  background: var(--lui-field-hover);
+  color: var(--lui-text);
+}
+
+.lui-date-field__trigger:focus-visible {
+  border-color: var(--lui-control-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 var(--lui-focus-ring-width) var(--lui-brand-soft);
+}
+
+.lui-date-field__trigger > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lui-date-field__trigger > span.is-placeholder {
+  color: var(--lui-text-subtle);
+}
+
+.lui-date-field__trigger > svg {
+  width: var(--lui-icon-size-lg);
+  height: var(--lui-icon-size-lg);
+  flex: 0 0 auto;
+  color: var(--lui-text-muted);
+}
+
+.lui-date-picker {
+  width: min(20rem, calc(100vw - 24px));
+  padding: 10px;
+}
+
+.lui-date-picker__header {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.lui-date-picker__header > strong {
+  color: var(--lui-text);
+  font-size: var(--lui-font-size-sm);
+  font-weight: 600;
+  text-align: center;
+}
+
+.lui-date-picker__weekdays,
+.lui-date-picker__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.lui-date-picker__weekdays {
+  padding-bottom: 4px;
+}
+
+.lui-date-picker__weekdays > span {
+  display: grid;
+  height: 28px;
+  place-items: center;
+  color: var(--lui-text-subtle);
+  font-size: var(--lui-font-size-detail);
+  font-weight: 600;
+}
+
+.lui-date-picker__day {
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 0;
+  border-radius: var(--lui-radius-control);
+  background: transparent;
+  color: var(--lui-text-soft);
+  cursor: pointer;
+  font-family: var(--lui-font);
+  font-size: var(--lui-font-size-xs);
+  font-weight: 500;
+}
+
+.lui-date-picker__day:disabled {
+  cursor: not-allowed;
+  opacity: var(--lui-disabled-opacity);
+}
+
+.lui-date-picker__day:hover:not(:disabled),
+.lui-date-picker__day:focus-visible {
+  outline: none;
+  background: var(--lui-overlay-hover);
+  color: var(--lui-text);
+}
+
+.lui-date-picker__day.is-outside {
+  color: var(--lui-text-subtle);
+  opacity: 0.62;
+}
+
+.lui-date-picker__day.is-today {
+  box-shadow: inset 0 0 0 1px var(--lui-brand);
+  color: var(--lui-brand-text);
+}
+
+.lui-date-picker__day.is-selected,
+.lui-date-picker__day.is-selected:hover,
+.lui-date-picker__day.is-selected:focus-visible {
+  background: var(--lui-brand);
+  box-shadow: none;
+  color: var(--lui-brand-foreground);
+}
+
+.lui-date-picker__footer {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 8px;
+  border-top: 1px solid var(--lui-border-subtle);
+  padding-top: 8px;
+}

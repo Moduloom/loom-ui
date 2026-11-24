@@ -1,0 +1,49 @@
+.lui-dropdown-menu [role="menuitemradio"] {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--lui-radius-control);
+  padding: 8px 9px;
+  color: var(--lui-text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.lui-dropdown-menu [role="menuitemradio"]:hover:not(:disabled):not([aria-checked="true"]) {
+  background: var(--lui-bg-hover);
+}
+
+.lui-dropdown-menu [role="menuitemradio"][aria-checked="true"] {
+  background: var(--lui-bg-selected);
+  box-shadow: var(--lui-shadow-selection);
+}
+
+.lui-dropdown-menu [role="menuitemradio"][aria-checked="true"]:hover:not(:disabled) {
+  background: var(--lui-bg-selected);
+}
+
+.lui-dropdown-menu__radio {
+  display: grid;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 2px solid var(--lui-text-muted);
+  border-radius: var(--lui-radius-circle);
+  transition:
+    border-color var(--lui-duration-fast) ease,
+    background-color var(--lui-duration-fast) ease;
+}
+
+.lui-dropdown-menu [role="menuitemradio"][aria-checked="true"] .lui-dropdown-menu__radio {
+  border-color: var(--lui-brand);
+  background: var(--lui-brand);
+}
+
+.lui-dropdown-menu [role="menuitemradio"][aria-checked="true"] .lui-dropdown-menu__radio > i {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--lui-radius-circle);
+  background: var(--lui-selection-indicator-foreground);
+}

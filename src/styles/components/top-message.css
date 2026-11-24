@@ -1,0 +1,143 @@
+.lui-top-message {
+  --lui-top-message-tone: var(--lui-link);
+
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--lui-message-gap);
+  color: var(--lui-text-primary);
+  font:
+    var(--lui-message-font-weight) var(--lui-font-size-sm) / var(--lui-message-line-height)
+    var(--lui-font);
+}
+
+.lui-top-message--success {
+  --lui-top-message-tone: var(--lui-success);
+}
+
+.lui-top-message--warning,
+.lui-top-message--reconnecting {
+  --lui-top-message-tone: var(--lui-warning);
+}
+
+.lui-top-message--error {
+  --lui-top-message-tone: var(--lui-danger);
+}
+
+.lui-top-message__icon {
+  display: grid;
+  width: var(--lui-icon-size-lg);
+  height: var(--lui-icon-size-lg);
+  flex: 0 0 var(--lui-icon-size-lg);
+  place-items: center;
+  color: var(--lui-top-message-tone);
+}
+
+.lui-top-message__icon svg {
+  width: var(--lui-icon-size-lg);
+  height: var(--lui-icon-size-lg);
+}
+
+.lui-top-message__spinner {
+  animation: lui-top-message-spin var(--lui-message-spin-duration) linear infinite;
+}
+
+.lui-top-message__content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--lui-space-1);
+  overflow-wrap: anywhere;
+}
+
+.lui-top-message__content strong {
+  color: var(--lui-text-primary);
+  font-weight: var(--lui-message-font-weight);
+}
+
+.lui-top-message__content span,
+.lui-top-message__content small {
+  color: var(--lui-text-secondary);
+}
+
+.lui-top-message--inline {
+  min-height: var(--lui-message-line-height);
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.lui-top-message--inline .lui-top-message__content span,
+.lui-top-message--inline .lui-top-message__content small {
+  color: var(--lui-top-message-tone);
+}
+
+.lui-top-message--overlay,
+.lui-top-message--fixed {
+  left: 50%;
+  width: max-content;
+  max-width: min(var(--lui-message-max-width), calc(100% - 2 * var(--lui-space-10)));
+  min-height: var(--lui-message-min-height);
+  transform: translate(-50%, var(--lui-top-message-rest-y, 0px));
+  border: 1px solid var(--lui-message-border);
+  border-radius: var(--lui-message-radius);
+  padding: var(--lui-message-padding-block) var(--lui-message-padding-inline);
+  background: var(--lui-message-surface);
+  box-shadow: var(--lui-message-shadow);
+  animation: lui-top-message-enter var(--lui-duration-standard) var(--lui-ease-standard) both;
+}
+
+.lui-top-message--overlay {
+  position: absolute;
+  z-index: var(--lui-message-overlay-layer);
+  top: var(--lui-message-offset);
+}
+
+.lui-top-message--fixed {
+  --lui-top-message-rest-y: -50%;
+  pointer-events: none;
+  position: fixed;
+  z-index: var(--lui-message-layer);
+  top: var(--lui-message-viewport-y);
+  max-width: min(var(--lui-message-max-width), calc(100vw - 2 * var(--lui-space-10)));
+  max-height: calc(
+    2 *
+    var(--lui-message-viewport-y) -
+    2 *
+    max(var(--lui-message-offset), env(safe-area-inset-top))
+  );
+  overflow-y: auto;
+}
+
+.lui-top-message--overlay[data-state="closed"],
+.lui-top-message--fixed[data-state="closed"] {
+  pointer-events: none;
+  animation: lui-top-message-exit var(--lui-duration-fast) var(--lui-ease-standard) both;
+}
+
+@keyframes lui-top-message-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(var(--lui-top-message-rest-y, 0px) - var(--lui-space-1)));
+  }
+}
+
+@keyframes lui-top-message-exit {
+  to {
+    opacity: 0;
+    transform: translate(-50%, calc(var(--lui-top-message-rest-y, 0px) - var(--lui-space-1)));
+  }
+}
+
+@keyframes lui-top-message-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(html:not([data-loom-motion-preview])) :is(.lui-top-message, .lui-top-message__spinner) {
+    animation: none;
+  }
+}

@@ -1,0 +1,659 @@
+.lui-progress-bar {
+  width: 100%;
+  height: var(--lui-update-progress-height);
+  overflow: hidden;
+  border-radius: var(--lui-radius-pill);
+  background: var(--lui-overlay-hover);
+}
+.lui-progress-bar__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--lui-brand);
+}
+.lui-settings-app-identity {
+  display: grid;
+  justify-items: center;
+  gap: var(--lui-space-3);
+  padding: var(--lui-space-8) 0;
+  text-align: center;
+}
+.lui-settings-app-identity__logo {
+  width: var(--lui-settings-app-logo-size);
+  height: var(--lui-settings-app-logo-size);
+  object-fit: contain;
+}
+.lui-settings-app-identity__name {
+  margin: 0;
+  color: var(--lui-text);
+  font-size: var(--lui-font-size-lg);
+  font-weight: 600;
+}
+.lui-settings-app-identity__version {
+  margin: 0;
+  color: var(--lui-text-muted);
+  font-size: var(--lui-font-size-sm);
+}
+.lui-settings-link-group {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--lui-line-subtle);
+  border-radius: var(--lui-radius-panel);
+  background: var(--lui-surface);
+  padding: 0 var(--lui-space-3);
+}
+.lui-settings-link-group > .lui-settings-list-item + .lui-settings-list-item {
+  border-top: 1px solid var(--lui-line-subtle);
+}
+.lui-settings-dialog {
+  --lui-member-details-width: 340px;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  transform: none;
+  border-radius: 0;
+  background: var(--lui-nav-bg);
+  box-shadow: none;
+}
+.lui-settings-dialog-overlay[data-state="open"],
+.lui-settings-dialog[data-state="open"] {
+  animation: none;
+}
+.lui-settings-dialog[data-state="closed"] {
+  animation: lui-settings-dialog-out 150ms linear;
+}
+.lui-settings-dialog[data-state="closed"] .lui-settings-shell {
+  pointer-events: none;
+  animation: lui-settings-shell-out 75ms ease-in forwards;
+}
+.lui-member-details-popover.lui-popover--content-sized {
+  width: var(--lui-member-details-width);
+}
+.lui-settings-dialog__body {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+.lui-settings-shell {
+  --lui-settings-track-width: 84rem;
+  --lui-settings-content-track-width: var(--lui-settings-track-width);
+  --lui-settings-outer-gutter: max(15vw, calc((100vw - var(--lui-settings-track-width)) / 2));
+  --lui-settings-content-gutter: max(
+    15vw,
+    calc((100vw - var(--lui-settings-content-track-width)) / 2)
+  );
+  --lui-settings-sidebar-width: calc(var(--lui-settings-outer-gutter) + 18rem);
+  --lui-settings-content-inset: clamp(2rem, 2vw, 2.5rem);
+  --lui-settings-content-max: min(44rem, 56vw);
+  --lui-settings-wide-end: min(75vw, calc(100vw - var(--lui-settings-content-gutter)));
+  --lui-settings-control-width: 180px;
+  --lui-settings-card-inline-padding: 20px;
+  --lui-settings-role-rail-width: 15rem;
+  --lui-settings-close-size: 3rem;
+  --lui-settings-form-field-min-width: 16rem;
+  --lui-settings-stacked-role-list-height: min(24rem, 42dvh);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--lui-settings-sidebar-width) minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    var(--lui-surface-sunken) 0 var(--lui-settings-sidebar-width),
+    var(--lui-nav-bg) var(--lui-settings-sidebar-width) 100%
+  );
+  color: var(--lui-text-soft);
+}
+.lui-settings-shell--wide,
+.lui-settings-shell--full {
+  --lui-settings-content-track-width: 96rem;
+  --lui-settings-content-max: min(
+    96rem,
+    calc(
+      var(--lui-settings-wide-end) -
+      var(--lui-settings-sidebar-width) -
+      var(--lui-settings-content-inset)
+    )
+  );
+}
+
+.lui-settings-split-panel {
+  grid-template-columns: var(--lui-settings-role-rail-width) minmax(0, 1fr);
+}
+.lui-settings-role-fields {
+  display: grid;
+  align-items: start;
+  gap: var(--lui-space-7);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--lui-settings-form-field-min-width)), 1fr));
+}
+.lui-settings-split-panel > .lui-settings-split-panel__rail {
+  border-right: 1px solid var(--lui-line-subtle);
+  padding-right: var(--lui-space-4);
+}
+
+@media (max-width: 1199px) {
+  .lui-settings-split-panel {
+    --lui-settings-stacked-role-list-height: min(12rem, 25dvh);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: var(--lui-settings-stacked-role-list-height) max-content;
+    align-content: start;
+    overflow-y: auto;
+  }
+  .lui-settings-split-panel > .lui-settings-split-panel__rail {
+    border-right: 0;
+    border-bottom: 1px solid var(--lui-line-subtle);
+    padding-right: var(--lui-space-3);
+    padding-bottom: var(--lui-space-4);
+  }
+  .lui-settings-split-panel > :not(.lui-settings-split-panel__rail) {
+    grid-template-rows: auto auto auto;
+    overflow: visible;
+  }
+  .lui-settings-split-panel > :not(.lui-settings-split-panel__rail) > .lui-settings-result-region {
+    overflow: visible;
+  }
+}
+
+.lui-preferences-card {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  gap: 0;
+  border: 1px solid var(--lui-line-subtle);
+  border-radius: var(--lui-radius-panel);
+  background: var(--lui-surface);
+  padding: 0 var(--lui-settings-card-inline-padding);
+}
+.lui-preferences-card > .lui-settings-control-row:last-child {
+  border-bottom: 0;
+}
+
+.lui-settings-page {
+  width: 100%;
+  max-width: var(--lui-settings-content-max);
+}
+.lui-settings-field-group {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: var(--lui-space-5);
+}
+.lui-settings-field-group--columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.lui-settings-field-group--compact {
+  gap: var(--lui-space-3);
+}
+.lui-settings-shell__navigation {
+  position: relative;
+  display: flex;
+  width: min(100%, 22rem);
+  min-height: 0;
+  justify-self: end;
+  flex-direction: column;
+  overflow: hidden auto;
+  padding: clamp(2rem, 7vh, 3.75rem) 0.75rem 2.5rem;
+  color: var(--lui-text-subtle);
+  border-right: 1px solid var(--lui-border);
+  scrollbar-width: thin;
+}
+.lui-settings-shell__back {
+  display: flex;
+  width: 100%;
+  min-height: var(--lui-touch-target);
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-radius: var(--lui-radius-sm);
+  padding: 0.625rem 0.75rem;
+  background: transparent;
+  color: var(--lui-text-muted);
+  font: 600 var(--lui-font-size-body) / 1.375rem var(--lui-font);
+  text-align: left;
+}
+.lui-settings-shell__back:hover:not(:disabled) {
+  background: var(--lui-overlay-hover);
+  color: var(--lui-text);
+}
+.lui-settings-shell__back:focus-visible {
+  outline: var(--lui-focus-ring-width) solid var(--lui-focus);
+  outline-offset: -2px;
+}
+.lui-settings-shell__back svg {
+  width: var(--lui-icon-size-md);
+  height: var(--lui-icon-size-md);
+  flex: 0 0 auto;
+}
+.lui-settings-nav-item {
+  display: flex;
+  min-height: var(--lui-touch-target);
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.25rem;
+  border: 0;
+  border-radius: var(--lui-radius-sm);
+  padding: 0.625rem 0.75rem;
+  background: transparent;
+  color: var(--lui-text-muted);
+  font: 500 var(--lui-font-size-body) / 1.375rem var(--lui-font);
+  text-align: left;
+  transition:
+    background-color var(--lui-duration-fast) var(--lui-ease-standard),
+    color var(--lui-duration-fast) var(--lui-ease-standard);
+}
+.lui-settings-nav-item:hover:not(:disabled):not(.is-active):not(.lui-settings-nav-item--danger) {
+  background: var(--lui-overlay-hover);
+  color: var(--lui-text-soft);
+}
+.lui-settings-nav-item--danger {
+  background: var(--lui-coral-soft);
+  color: var(--lui-danger-text);
+  box-shadow: inset 0 0 0 1px var(--lui-coral-soft);
+  transition:
+    background-color var(--lui-duration-fast) ease,
+    color var(--lui-duration-fast) ease,
+    box-shadow var(--lui-duration-fast) ease;
+}
+.lui-settings-nav-item--danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--lui-danger) 22%, transparent);
+  color: var(--lui-danger-text);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--lui-danger) 32%, transparent);
+}
+.lui-settings-nav-item.is-active {
+  background: var(--lui-overlay-selected);
+  color: var(--lui-text);
+}
+.lui-settings-nav-item.is-active:hover:not(:disabled) {
+  background: var(--lui-overlay-selected);
+  color: var(--lui-text);
+}
+.lui-settings-nav-item__icon {
+  display: grid;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  place-items: center;
+}
+.lui-settings-nav-item__icon svg {
+  width: 1rem;
+  height: 1rem;
+  color: currentColor;
+}
+.lui-settings-shell__content {
+  container-type: inline-size;
+  min-height: 0;
+  overflow: hidden auto;
+  overflow-anchor: none;
+  padding: clamp(2rem, 7vh, 3.75rem) var(--lui-settings-content-gutter) 5rem
+    var(--lui-settings-content-inset);
+  background: var(--lui-nav-bg);
+  scrollbar-color: var(--lui-surface-sunken) var(--lui-surface);
+  scrollbar-width: thin;
+}
+
+.lui-settings-shell__content--bounded {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.lui-settings-list-page {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  gap: var(--lui-space-8);
+}
+.lui-settings-result-region {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lui-line-strong) transparent;
+  padding-inline-end: var(--lui-space-6);
+}
+.lui-settings-result-region[data-result-state="empty"],
+.lui-settings-result-region[data-result-state="loading"] {
+  display: grid;
+  align-items: center;
+  justify-items: stretch;
+}
+.lui-settings-result-region > * {
+  min-width: 0;
+}
+
+.lui-settings-result-region--framed {
+  flex: 0 1 auto;
+  padding-inline-end: 0;
+  border: 1px solid var(--lui-line-subtle);
+  border-radius: var(--lui-radius-panel);
+  background: var(--lui-surface-sunken);
+}
+
+.lui-settings-shell__close {
+  position: absolute;
+  top: clamp(2rem, 7vh, 3.75rem);
+  left: calc(var(--lui-settings-wide-end) + var(--lui-space-4));
+  z-index: 10;
+  display: none;
+  width: var(--lui-settings-close-size);
+  height: var(--lui-settings-close-size);
+  place-items: center;
+  border: 1px solid var(--lui-line-strong);
+  border-radius: var(--lui-radius-pill);
+  background: var(--lui-surface-sunken);
+  color: var(--lui-text-muted);
+  transition:
+    border-color var(--lui-duration-fast) var(--lui-ease-standard),
+    color var(--lui-duration-fast) var(--lui-ease-standard);
+}
+
+.lui-settings-shell__close:hover {
+  border-color: var(--lui-text-subtle);
+  color: var(--lui-text);
+}
+
+.lui-settings-shell__close:focus-visible {
+  outline: var(--lui-focus-ring-width) solid var(--lui-focus);
+  outline-offset: 2px;
+}
+
+.lui-settings-shell__close svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .lui-settings-shell__close {
+    display: grid;
+  }
+}
+
+.lui-settings-shell__content--transition-a > :not([hidden]) {
+  animation: lui-settings-content-in-a var(--lui-duration-standard) var(--lui-ease-standard);
+}
+
+.lui-settings-shell__content--transition-b > :not([hidden]) {
+  animation: lui-settings-content-in-b var(--lui-duration-standard) var(--lui-ease-standard);
+}
+
+@keyframes lui-settings-content-in-a {
+  from {
+    opacity: 0.28;
+  }
+}
+
+@keyframes lui-settings-content-in-b {
+  from {
+    opacity: 0.28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(html:not([data-loom-motion-preview]))
+    :is(.lui-settings-shell__content--transition-a, .lui-settings-shell__content--transition-b) > :not([hidden]) {
+    animation: none;
+  }
+}
+
+.lui-settings-shell__content > * {
+  width: 100%;
+  max-width: var(--lui-settings-content-max);
+}
+
+.lui-settings-shell__content > .lui-settings-shell__content-grid {
+  display: grid;
+  width: min(100%, 76rem);
+  max-width: 76rem;
+  grid-template-columns: minmax(0, var(--lui-settings-content-max)) minmax(17rem, 22rem);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.lui-settings-shell__primary,
+.lui-settings-shell__auxiliary {
+  min-width: 0;
+}
+
+.lui-settings-shell__auxiliary {
+  position: sticky;
+  top: 0;
+}
+
+.lui-settings-nav-group {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.lui-settings-nav-group--divided {
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--lui-line-subtle);
+  padding-top: 0.75rem;
+}
+
+.lui-settings-nav-group__header {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.lui-settings-nav-group__label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--lui-text-subtle);
+  font-size: var(--lui-font-size-xs);
+  font-weight: 700;
+  line-height: 1rem;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lui-settings-nav-group__actions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.lui-settings-nav-group__items {
+  display: grid;
+  min-width: 0;
+}
+
+.lui-settings-preview-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--lui-line-subtle);
+  border-radius: var(--lui-radius-panel);
+  background: var(--lui-surface);
+}
+
+.lui-settings-preview-panel__header {
+  display: grid;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--lui-line-subtle);
+  padding: 1rem;
+}
+
+.lui-settings-preview-panel__header h3,
+.lui-settings-preview-panel__header p {
+  margin: 0;
+}
+
+.lui-settings-preview-panel__header h3 {
+  color: var(--lui-text);
+  font-size: var(--lui-font-size-sm);
+  font-weight: 650;
+}
+
+.lui-settings-preview-panel__header p {
+  color: var(--lui-text-muted);
+  font-size: var(--lui-font-size-xs);
+  line-height: 1.125rem;
+}
+
+.lui-settings-preview-panel__content {
+  min-width: 0;
+  padding: 1rem;
+}
+.lui-settings-preview-panel__content > .lui-settings-control-row:last-child,
+.lui-settings-preview-panel__content
+  .lui-settings-field-group
+  > .lui-settings-control-row:not(:has(~ .lui-settings-control-row)) {
+  border-bottom: 0;
+}
+
+.lui-settings-list-item[data-selected="true"]:hover:not(:disabled) {
+  background: var(--lui-overlay-selected);
+}
+.lui-dialog-action-row {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 24rem) auto;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid var(--lui-border-subtle);
+  padding: 1rem 0;
+}
+.lui-dialog-action-row__copy {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 0.125rem;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-wrap: anywhere;
+}
+.lui-dialog-action-row__copy strong {
+  color: var(--lui-text);
+  font-weight: 600;
+}
+.lui-dialog-action-row__copy small {
+  color: var(--lui-text-muted);
+}
+.lui-dialog-action-row__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.lui-dialog-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--lui-space-4);
+  margin: var(--lui-space-4) calc(-1 * var(--lui-dialog-body-inline-padding))
+    calc(-1 * var(--lui-dialog-body-bottom-padding));
+  border-top: 1px solid var(--lui-border-subtle);
+  padding: var(--lui-dialog-footer-block-padding) var(--lui-dialog-body-inline-padding);
+  background: var(--lui-surface);
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.lui-dialog-form-footer--grouped {
+  margin-block-start: 0;
+}
+.lui-settings-section-header {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.lui-settings-section-header__copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+}
+.lui-settings-section-header__title-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.75rem;
+}
+.lui-settings-section-header__description-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.75rem;
+}
+.lui-settings-section-header h2,
+.lui-settings-section-header p {
+  margin: 0;
+}
+.lui-settings-section-header h2 {
+  color: var(--lui-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+.lui-settings-section-header p {
+  color: var(--lui-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.lui-settings-section-header__actions,
+.lui-settings-form-footer {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.lui-settings-form-footer {
+  justify-content: flex-end;
+  padding-top: var(--lui-space-6);
+}
+
+@media (max-width: 48rem) {
+  .lui-settings-shell {
+    grid-template-columns: minmax(10.5rem, 38%) minmax(0, 62%);
+    background: linear-gradient(
+      to right,
+      var(--lui-surface-sunken) 0 38%,
+      var(--lui-nav-bg) 38% 100%
+    );
+  }
+  .lui-settings-shell__navigation {
+    padding-inline: 0.5rem;
+  }
+  .lui-settings-shell__content {
+    padding-right: 4.5rem;
+  }
+}
+
+@media (max-width: 76rem) {
+  .lui-settings-shell__content > .lui-settings-shell__content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lui-settings-shell__auxiliary {
+    position: static;
+  }
+}
+
+@media (max-width: 32.5rem) {
+  .lui-settings-form-footer {
+    flex-wrap: wrap;
+  }
+
+  .lui-dialog-action-row {
+    align-items: flex-start;
+  }
+}
