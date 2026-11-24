@@ -1,27 +1,40 @@
 # Loom UI
 
-Moduloom 使用的 React 基础组件库。按钮、表单、弹窗、菜单和布局共享主题 Token，可独立接入 React 应用。
+**一套可独立使用的 React 基础组件。**
 
-![Loom UI 的偏好设置示例](docs/preview.png)
+按钮、表单、菜单、弹窗和布局共用一套主题 Token。组件支持受控状态、键盘操作和深浅主题。
 
-## 快速开始
+![使用 Loom UI 构建的偏好设置表单](docs/preview.png)
+
+## 从源码安装
 
 需要 Node.js 22.18+ 和 pnpm 11。
 
-~~~sh
+```sh
 git clone https://github.com/Moduloom/loom-ui.git
 cd loom-ui
 pnpm install --frozen-lockfile
 pnpm build
-~~~
+pnpm pack --pack-destination dist
+```
 
-构建输出位于 dist/components。把构建后的包接入 React 项目即可使用。
+在你的 React 项目中，用 `pnpm add` 安装生成的 `loom-ui/dist/loom-ui-0.1.0.tgz`。相邻目录的安装示例如下。
 
-~~~tsx
-import { Button } from 'loom-ui'
-import 'loom-ui/styles.css'
+```sh
+pnpm add ../loom-ui/dist/loom-ui-0.1.0.tgz
+```
 
-<Button variant="primary">保存</Button>
-~~~
+```tsx
+import { Button } from 'loom-ui';
+import 'loom-ui/styles.css';
 
-[组件源码](src/index.ts) · [预览框架 Moduloom](https://github.com/Moduloom/moduloom) · [GPL v3](LICENSE)
+export function SaveButton({ onSave }: { onSave: () => void }) {
+  return <Button variant="primary" onClick={onSave}>保存</Button>;
+}
+```
+
+更多组件见 [导出列表](src/index.ts)。交互预览框架见 [Moduloom](https://github.com/Moduloom/moduloom)。
+
+## 许可证
+
+[GPL v3](LICENSE)
