@@ -1,8 +1,17 @@
-# Loom UI
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Moduloom/moduloom/main/frame/assets/frame.svg" width="88" alt="Loom UI 标志">
+  <h1>Loom UI</h1>
+  <p>适用于 React 19 的基础组件库。</p>
+  <p><a href="#从源码安装">从源码安装</a> &nbsp;&nbsp; <a href="src/index.ts">组件 API</a></p>
+</div>
 
-**一套可独立使用的 React 基础组件。**
+## 组件
 
-按钮、表单、菜单、弹窗和布局共用一套主题 Token。组件支持受控状态、键盘操作和深浅主题。
+- 按钮、表单、菜单、弹窗和布局组件。
+- 受控状态、键盘交互和焦点管理。
+- 统一的主题 Token 和深浅模式。
+
+## 界面展示
 
 ![使用 Loom UI 构建的偏好设置表单](docs/preview.png)
 
@@ -18,7 +27,7 @@ pnpm build
 pnpm pack --pack-destination dist
 ```
 
-在你的 React 项目中，用 `pnpm add` 安装生成的 `loom-ui/dist/loom-ui-0.1.0.tgz`。相邻目录的安装示例如下。
+下面以 React 项目和 `loom-ui` 位于同一父目录为例。
 
 ```sh
 pnpm add ../loom-ui/dist/loom-ui-0.1.0.tgz
@@ -33,7 +42,7 @@ export function SaveButton({ onSave }: { onSave: () => void }) {
 }
 ```
 
-更多组件见 [导出列表](src/index.ts)。交互预览框架见 [Moduloom](https://github.com/Moduloom/moduloom)。
+组件清单见 [API 导出](src/index.ts)。在 [Moduloom](https://github.com/Moduloom/moduloom) 中可以组织组件预览。
 
 ## 许可证
 
